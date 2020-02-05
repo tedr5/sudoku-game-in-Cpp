@@ -133,7 +133,7 @@ void Sudoku::Show_grid(){
 }
 
 void Sudoku::Show_nums(){
-police = TTF_OpenFont("Fonts/04B_20.TTF", 50);
+police = TTF_OpenFont("Fonts/04B_20.TTF", 40);
 SDL_Color White = {255, 255, 255};
 for(int i=0; i<N; i++){
     for(int j=0; j<N; j++){
