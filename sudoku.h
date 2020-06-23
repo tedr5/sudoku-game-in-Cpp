@@ -4,27 +4,14 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include <cstring>
+#include <sstream>
 #include "constants.h"
 
 
-class Point{
-private:
-    int x;
-    int y;
-
-public:
-       Point();
-       Point(int abs,int ord){x = abs; y = ord;}
-      ~Point(){std::cout<<"Delete Point"<<std::endl; }
-      int &getX(){return x;}
-      int &getY(){return y;}
-      void setX(int a){x=a;}
-      void setY(int o){y=o;}
-};
 
 class Sudoku {
-private:
-   char *name;
+ private:
+   const char *name;
    bool isRunning;
    SDL_Window *window;
    SDL_Renderer *renderer;
@@ -35,11 +22,11 @@ private:
    SDL_Rect mouse;
    int **val;
    int **type;
-   int frame;
+   int save_num;
+   int coul_type;
 
-
-public:
-    Sudoku(){
+ public:
+ Sudoku(){
         val = new int* [N];
    // Create a row for every pointer
    for (int i=0; i<N; i++)
@@ -48,14 +35,14 @@ public:
       std::memset(val[i], -1, N*sizeof(int));
    }
    type = new int* [N];
-// Create a row for every pointer
-for (int i=0; i<N; i++)
-{ // Note : Rows may not be contiguous
- type[i] = new int[N];
- std::memset(type[i], -1, N*sizeof(int));
-}
-        std::cout<<"Create Sudoku"<<std::endl;}
-  ~Sudoku(){
+  // Create a row for every pointer
+   for (int i=0; i<N; i++)
+   { // Note : Rows may not be contiguous
+   type[i] = new int[N];
+   std::memset(type[i], -1, N*sizeof(int));
+   }
+   std::cout<<"Create Sudoku"<<std::endl;}
+    ~Sudoku(){
       for(int i = 0; i < N; ++i) {
               delete[] val[i];
           }
@@ -66,25 +53,25 @@ for (int i=0; i<N; i++)
               }
               //Free the array of pointers
               delete[] type;
-  std::cout<<"Sudoku delete"<<std::endl;}
+     std::cout<<"Sudoku delete"<<std::endl;}
   Sudoku &operator=(const Sudoku &s)
-  {
-  	//Si le parametre de droite et de gauche sont les memes
-  	if(this==&s)
+     {
+  	  //Si le parametre de droite et de gauche sont les memes
+  	  if(this==&s)
   		return *this;
-
-    for(int i=0;i<N;i++){
+      for(int i=0;i<N;i++){
        for(int j=0; j<N; j++){
        this->val[i][j] = s.val[i][j];
        this->type[i][j] = s.type[i][j];
        }
-   }
-  	return *this;
-  }
+      }
+  	    return *this;
+      }
  void setVal(int row,int col,int value){val[row][col] = value;}
  int getVal(int row,int col){return val[row][col];}
   void setType(int row,int col,int value){type[row][col] = value;}
   int getType(int row,int col){return type[row][col];}
+  char getChar(int val);
   void PrintValue(){
       for (int i=0; i<N; i++)
       {
@@ -101,8 +88,8 @@ for (int i=0; i<N; i++)
         std::cout << std::endl;
       }
   }
- void setName(char* n){name = n;}
-  char* getName(){return name;}
+  void setName(const char* n){name = n;}
+  const char* getName(){return name;}
   void Init(const char* title,int width,int height);
 
   void Events();
@@ -110,11 +97,16 @@ for (int i=0; i<N; i++)
   void Render();
   void Clean();
   bool Running();
-  void Show_grid();//Afficher le quadrillage
+  void Show_grid();
   void Show_nums();
-  Sudoku& Read_file(char* name);
-  int Valid_value(int val, int i, int j);
-  Sudoku &Change_square(int i, int j);
+  Sudoku& Read_file(const char* name);
   void Write_file();
+  Sudoku& Change_square(int i, int j);
+  bool Next_square(int *row,int *col);
+  bool Completed();
+  bool Valid_value(int i, int j,int v, int MODE);
+  bool Auto_solve();
+
+
 };
 #endif

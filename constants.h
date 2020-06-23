@@ -21,7 +21,6 @@
 #define NON_MODIFIABLE -15
 #define AUTO 42
 
-
 // Les tailles de case et de police sont prévues
 // pour tout avoir proportionel, il suffit de changer la valeur de TAILLE_CASE
 // et tout s'affiche en proportion

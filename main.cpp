@@ -4,15 +4,13 @@
 int main(int argc,char *argv[]) {
    Sudoku *sudoku = new Sudoku();
   sudoku->Init(argv[1],HAUTEUR,LARGEUR);
-  sudoku->Read_file(argv[1]);
-   const int FPS = 20;
+   const int FPS = 30;
    const int frameDelay = 1000 / FPS;
    Uint32 frameStart;
    int frameTime;
-   while(sudoku->Running()){
+  while(sudoku->Running()){
       frameStart = SDL_GetTicks();
       sudoku->Events();
-      sudoku->Update();
       sudoku->Render();
       frameTime = SDL_GetTicks() - frameStart;
 
@@ -20,8 +18,6 @@ int main(int argc,char *argv[]) {
           SDL_Delay(frameDelay - frameTime);
       }
   }
-
-sudoku->Clean();
-
+ sudoku->Clean();
   return 0;
 }
