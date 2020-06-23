@@ -8,11 +8,10 @@
 
 std::vector<std::filesystem::directory_entry> find_files(
   std::filesystem::path const& path,
-  std::string_view regex)
+  std::regex rx)
   {
     std::vector<std::filesystem::directory_entry> result;
-    std::cout<<regex.data()<<std::endl;
-    std::regex rx(regex.data());
+
 
     std::copy_if(
       std::filesystem::recursive_directory_iterator(path),
@@ -29,16 +28,19 @@ std::vector<std::filesystem::directory_entry> find_files(
 void read_directory(const std::string& name,const char* nb1)
 {   std::filesystem::path const& p(name);
     std::string str(nb1);
-    std::cout<<str<<std::endl;
-    auto pattern = R"(PLAY[)" + str + R"(].sudoku.save[0-1000])";
+    std::regex r4("PLAY"+str+".save[0-1000]");
+    auto pattern = r4;
     auto result = find_files(p,pattern);
+
     for(auto const& entry: result)
     {
      std::cout<< "ITERATE" << std::endl;
-      /*int pos = str3.find("e");
-      str3 = str3.substr(pos+1);*/
-      std::cout<< entry.path().string() << std::endl;
+      std::string str3 = entry.path().string();
+      int pos = str3.find("e");
+      str3 = str3.substr(pos+1);
+      std::cout<< str3 << std::endl;
     }
+
 }
 char Sudoku::getChar(int val){
    switch (val) {
