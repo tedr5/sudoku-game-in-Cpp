@@ -2,7 +2,7 @@
 
 📖 **Description**
 
-A C++ application for playing and solving Sudoku puzzles using SDL for graphical interface.
+C++ application for playing and solving Sudoku puzzles using SDL for graphical interface.
 
 ⚙️ **Technologies**
 
