@@ -2,20 +2,19 @@
 
 📖 **Description**
 
-A command-line application for solving and playing Sudoku, utilizing a graphical interface for an engaging user experience.
+A C++ application for playing and solving Sudoku puzzles using SDL for graphical interface.
 
 ⚙️ **Technologies**
 
-- Programming Language: C
-- Graphics Library: uvsqgraphics (Université de Versailles - Paris Saclay)
+- Language: C++
+- Graphics: SDL (Simple DirectMedia Layer)
 
 🛠️ **Installation**
 
-Clone the repository:
-
-```bash
- https://github.com/tedr5/sudoku-in-Cpp.git
-```
+- Clone the repository:
+  
+  ```bash
+  [git clone <repository-url>](https://github.com/tedr5/sudoku-in-Cpp.git)
 - Compile the C++ files.
 - Ensure the SDL library is installed on your machine.
 - Run the application.
@@ -30,3 +29,4 @@ Clone the repository:
 📊 **Data Structures**
 
 Utilizes a two-dimensional array for Sudoku board representation and a stack for managing undo actions.
+
