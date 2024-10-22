@@ -14,7 +14,7 @@ C++ application for playing and solving Sudoku puzzles using SDL for graphical i
 - Clone the repository:
   
   ```bash
-  [git clone <repository-url>](https://github.com/tedr5/sudoku-in-Cpp.git)
+  git clone https://github.com/tedr5/sudoku-in-Cpp.git
 - Compile the C++ files.
 - Ensure the SDL library is installed on your machine.
 - Run the application.
